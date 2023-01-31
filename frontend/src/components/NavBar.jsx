@@ -1,12 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-
-import { useCaribbean } from "../contexts/CaribbeanContext";
-import api from "../services/api";
+import { Link } from "react-router-dom";
+// import api from "../services/api";
 
 function NavBar() {
-  const { reloadBoats } = useCaribbean();
-  const navigate = useNavigate();
-
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
@@ -31,27 +26,6 @@ function NavBar() {
           <Link className="nav-item nav-link" to="/map">
             Map
           </Link>
-          <button
-            type="button"
-            className="btn mx-2"
-            onClick={() => {
-              api
-                .post("/games")
-                .then((response) => {
-                  if (response.status === 201) {
-                    reloadBoats();
-                  }
-                })
-                .catch((err) => {
-                  console.error(err);
-                })
-                .finally(() => {
-                  navigate("/map");
-                });
-            }}
-          >
-            Start
-          </button>
         </div>
       </div>
     </nav>

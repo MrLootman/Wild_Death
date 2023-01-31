@@ -1,95 +1,167 @@
-CREATE TABLE boat (
-  id INT AUTO_INCREMENT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  coord_x INT NOT NULL,
-  coord_y INT NOT NULL,
-  PRIMARY KEY(id)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
 
-CREATE TABLE tile (
-  id INT AUTO_INCREMENT NOT NULL,
-  type VARCHAR(255) NOT NULL,
-  coord_x INT NOT NULL,
-  coord_y INT NOT NULL,
-  PRIMARY KEY(id)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
 
-INSERT INTO boat (name, coord_x, coord_y) VALUES
-('Black Pearl', 1, 1),
-('Flying Dutchman', 4, 5),
-("Queen Anne's Revenge", 10, 4),
-('The Walrus', 9, 0);
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-INSERT INTO tile (type, coord_x, coord_y) VALUES
-('sea', 0, 0),
-('sea', 1, 0),
-('sea', 2, 0),
-('sea', 3, 0),
-('sea', 4, 0),
-('island', 5, 0),
-('sea', 6, 0),
-('sea', 7, 0),
-('sea', 8, 0),
-('port', 9, 0),
-('sea', 10, 0),
-('sea', 11, 0),
-('sea', 0, 1),
-('port', 1, 1),
-('sea', 2, 1),
-('island', 3, 1),
-('sea', 4, 1),
-('sea', 5, 1),
-('sea', 6, 1),
-('sea', 7, 1),
-('sea', 8, 1),
-('sea', 9, 1),
-('island', 10, 1),
-('sea', 11, 1),
-('sea', 0, 2),
-('sea', 1, 2),
-('sea', 2, 2),
-('sea', 3, 2),
-('sea', 4, 2),
-('sea', 5, 2),
-('sea', 6, 2),
-('sea', 7, 2),
-('island', 8, 2),
-('sea', 9, 2),
-('sea', 10, 2),
-('sea', 11, 2),
-('sea', 0, 3),
-('island', 1, 3),
-('sea', 2, 3),
-('sea', 3, 3),
-('island', 4, 3),
-('sea', 5, 3),
-('sea', 6, 3),
-('sea', 7, 3),
-('sea', 8, 3),
-('sea', 9, 3),
-('sea', 10, 3),
-('sea', 11, 3),
-('sea', 0, 4),
-('sea', 1, 4),
-('sea', 2, 4),
-('sea', 3, 4),
-('sea', 4, 4),
-('sea', 5, 4),
-('sea', 6, 4),
-('island', 7, 4),
-('sea', 8, 4),
-('sea', 9, 4),
-('port', 10, 4),
-('sea', 11, 4),
-('island', 0, 5),
-('sea', 1, 5),
-('sea', 2, 5),
-('sea', 3, 5),
-('port', 4, 5),
-('sea', 5, 5),
-('sea', 6, 5),
-('sea', 7, 5),
-('sea', 8, 5),
-('sea', 9, 5),
-('sea', 10, 5),
-('island', 11, 5);
+-- -----------------------------------------------------
+-- Schema blackMount
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema blackMount
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `blackMount` DEFAULT CHARACTER SET utf8 ;
+USE `blackMount` ;
+
+-- -----------------------------------------------------
+-- Table `blackMount`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `blackMount`.`user` (
+  `id_user` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(45) NULL,
+  `lastname` VARCHAR(45) NULL,
+  `email` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
+  `phone` VARCHAR(45) NULL,
+  `type_of_license` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_user`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `blackMount`.`company`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `blackMount`.`company` (
+  `id_company` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `phone` VARCHAR(45) NULL,
+  `address` VARCHAR(155) NULL,
+  PRIMARY KEY (`id_company`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `blackMount`.`employee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `blackMount`.`employee` (
+  `id_employee` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(45) NULL,
+  `lastname` VARCHAR(45) NULL,
+  `email` VARCHAR(255) NULL,
+  `password` VARCHAR(45) NULL,
+  `phone` VARCHAR(45) NULL,
+  `is_admin` VARCHAR(45) NULL DEFAULT 0,
+  `id_company` INT NOT NULL,
+  PRIMARY KEY (`id_employee`, `id_company`),
+  INDEX `fk_employee_company_idx` (`id_company` ASC) VISIBLE,
+  CONSTRAINT `fk_employee_company`
+    FOREIGN KEY (`id_company`)
+    REFERENCES `blackMount`.`company` (`id_company`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `blackMount`.`vehicle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `blackMount`.`vehicle` (
+  `id_vehicle` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(45) NULL,
+  `model` VARCHAR(45) NULL,
+  `horsepower` FLOAT NULL,
+  `nb_of_places` INT NULL,
+  `nb_of_km` INT NULL,
+  `is_in_repair` TINYINT NULL DEFAULT 0,
+  `id_company` INT NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_vehicle`, `id_company`),
+  INDEX `fk_vehicle_company1_idx` (`id_company` ASC) VISIBLE,
+  CONSTRAINT `fk_vehicle_company1`
+    FOREIGN KEY (`id_company`)
+    REFERENCES `blackMount`.`company` (`id_company`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `blackMount`.`loan`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `blackMount`.`loan` (
+  `id_loan` INT NOT NULL AUTO_INCREMENT,
+  `borrowing_date` VARCHAR(45) NULL,
+  `return_date` VARCHAR(45) NULL,
+  `id_vehicle` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  PRIMARY KEY (`id_loan`, `id_vehicle`, `id_user`),
+  INDEX `fk_loan_vehicle1_idx` (`id_vehicle` ASC) VISIBLE,
+  INDEX `fk_loan_user1_idx` (`id_user` ASC) VISIBLE,
+  CONSTRAINT `fk_loan_vehicle1`
+    FOREIGN KEY (`id_vehicle`)
+    REFERENCES `blackMount`.`vehicle` (`id_vehicle`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_loan_user1`
+    FOREIGN KEY (`id_user`)
+    REFERENCES `blackMount`.`user` (`id_user`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+TRUNCATE user;
+TRUNCATE employee;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO user(firstname, lastname, email, password, phone, type_of_license) VALUES
+("Nicolas", "Ryngite", "nicolas.ryngite@gmail.com", "$argon2id$v=19$m=65536,t=5,p=1$lo23UvsV7KbmlnOKa7NesA$OB/HDk192k8dstBDHygpiezBxyAiMZefKNx7l11Ok9A", "0678658978", "7"),
+("Amelie", "Poulin", "amelie.poulin@gmail.com", "$argon2id$v=19$m=65536,t=5,p=1$lo23UvsV7KbmlnOKa7NesA$OB/HDk192k8dstBDHygpiezBxyAiMZefKNx7l11Ok9A", "0756457876", "3"),
+("Naomi", "Molette", "naomi.molettegmail.com", "$argon2id$v=19$m=65536,t=5,p=1$lo23UvsV7KbmlnOKa7NesA$OB/HDk192k8dstBDHygpiezBxyAiMZefKNx7l11Ok9A", "0796789876", "6"),
+("Nathalie", "Bounty", "nathalie.bounty@gmail.com", "$argon2id$v=19$m=65536,t=5,p=1$lo23UvsV7KbmlnOKa7NesA$OB/HDk192k8dstBDHygpiezBxyAiMZefKNx7l11Ok9A", "07998704435", "4"),
+("Lucas", "Pote", "lucas.pote@gmail.com", "$argon2id$v=19$m=65536,t=5,p=1$lo23UvsV7KbmlnOKa7NesA$OB/HDk192k8dstBDHygpiezBxyAiMZefKNx7l11Ok9A","0677856537", "5");
+
+INSERT INTO company(name, phone, address) VALUES
+("Black Mount", "0244276809", "4 rue Baron 44000 Nantes");
+
+
+INSERT INTO employee(firstname, lastname, email, password, phone, is_admin, id_company) VALUES
+("Anne-Catherine", "Delacourtelle", "anne-catherine.delacourtelle@black-mount.com", "47656", "0788987656", 1, 1),
+("Jean-Marie", "Defeydeau", "jean-marie.defeydeau@black-mount.com", "54767", "0989876794", 0, 1),
+("Pierre-Yves", "Clin", "pierre-yves@black-mount.com", "76409", "0677689397", 0, 1),
+("Francois-Xavier", "Boileau", "francois-xavier@black-mount.com", "43093", "0798953456", 0, 1),
+("Marie-Antoinette", "Delaguillotine", "marie-antoinette.delaguillotine@black-mount.com", "12093", "0771209675", 0, 1);
+
+INSERT INTO vehicle(type, model, horsepower, nb_of_places, nb_of_km, is_in_repair, id_company, image) VALUES
+("Horse", "Tornado", 1, 2, 245, 0, 1,"/assets/vehicles/black-mount-vehicle-image-horse-tornado.jpg"),
+("Zebra", "Tictac", 6, 1, 1376, 0, 1,"/assets/vehicles/black-mount-vehicle-image-zebra-tictac.jpg"),
+("Unicorn", "Joly", 7, 2, 10789, 0, 1, "/assets/vehicles/black-mount-vehicle-image-unicorn-joly.jpg"),
+("Pony", "Pepito", 3, 1, 45, 0, 1, "/assets/vehicles/black-mount-vehicle-image-pony-pepito.jpg"),
+("Donkey", "Donkey", 1.25, 1, 1, 0, 1, "/assets/vehicles/black-mount-vehicle-image-donkey-donkey.jpg"),
+("Horse", "Pegasus", 1, 2, 132, 0, 1, "/assets/vehicles/black-mount-vehicle-image-horse-pegase.jpg"),
+("Shetland", "Caramel", 0.5, 1, 340, 0, 1,"/assets/vehicles/black-mount-vehicle-image-shetland-caramel.jpg"),
+("Rocking horse", "Tonnerre", 0.25, 1, 0, 0, 1,"/assets/vehicles/black-mount-vehicle-image-rockinghorse-tonnerre.jpg"),
+("Horse", "Lucky", 1, 2, 562, 0, 1,"/assets/vehicles/black-mount-vehicle-image-horse-lucky.jpg"),
+("Pony", "Froufrou", 3, 1, 1089, 0, 1,"/assets/vehicles/black-mount-vehicle-image-pony-froufrou.jpg"),
+("Horse", "Etincelle", 1, 2, 1032, 0, 1, "/assets/vehicles/black-mount-vehicle-image-horse-etincelle.jpg"),
+("Horse", "Altesse", 1, 2, 1562, 0, 1,"/assets/vehicles/black-mount-vehicle-image-horse-altesse.jpg"),
+("Horse", "Calipso", 1, 2, 2305, 0, 1,"/assets/vehicles/black-mount-vehicle-image-horse-calipso.jpg"),
+("Horse", "Cleopatre", 1, 2, 1562, 0, 1,"/assets/vehicles/black-mount-vehicle-image-horse-cleopatre.jpg"),
+("Unicorn", "Mia", 7, 2, 15789, 0, 1, "/assets/vehicles/black-mount-vehicle-image-unicorn-mia.jpg"),
+("Donkey", "Dardar", 1.25, 1, 15, 0, 1, "/assets/vehicles/black-mount-vehicle-image-donkey-dardar.jpg"),
+("Pony", "Mistik", 3, 1, 75, 0, 1, "/assets/vehicles/black-mount-vehicle-image-pony-mistik.jpg"),
+("Shetland", "Zumba", 0.5, 1, 540, 0, 1,"/assets/vehicles/black-mount-vehicle-image-shetland-zumba.jpg"),
+("Rocking horse", "Babytrote", 0.25, 1, 0, 0, 1,"/assets/vehicles/black-mount-vehicle-image-rockinghorse-babytrote.jpg"),
+("Pony", "Rock", 3, 1, 189, 0, 1,"/assets/vehicles/black-mount-vehicle-image-pony-rock.jpg");
+
+INSERT INTO loan (borrowing_date, return_date, id_vehicle, id_user) VALUES
+("2023-01-24", "2023-01-29", 1, 1),
+("2023-02-05", "2023-02-17", 2, 5),
+("2023-02-10", "2023-02-14", 1, 4),
+("2023-03-05", "2023-03-22", 4, 1),
+("2023-02-10", "2023-02-18", 3, 1),
+("2023-01-19", "2023-01-21", 2, 2)
+;
