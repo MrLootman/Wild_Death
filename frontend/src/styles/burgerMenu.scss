@@ -1,0 +1,38 @@
+.burger-menu_on {
+  background-color: white;
+  padding-inline: 16px;
+  border-radius: 6px;
+  position: absolute;
+  top: 12vh;
+  right: 2vw;
+  animation: fadeOn 0.4s ease-out;
+
+  &_off {
+    position: absolute;
+    top: 10vh;
+    right: -90px;
+  }
+}
+
+.burger-menu_on,
+.burger-menu_off {
+  a {
+    text-decoration: none;
+  }
+  p {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+@keyframes fadeOn {
+  0% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

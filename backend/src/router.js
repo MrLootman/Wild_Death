@@ -4,11 +4,20 @@ const router = express.Router();
 
 // Import des différents controllers :
 
-const userController = require("./controllers/UserController");
+const authorController = require("./controllers/AuthorController");
+const creatureController = require("./controllers/CreatureController");
 
-// Route concernant les utilisateurs :
+// Route concernant les auteurs :
 
-router.get("/users", userController.getAllUsers);
-router.get("/users/:id", userController.getUserById);
+router.get("/author", authorController.getAllUsers);
+router.get("/author/:id", authorController.getUserById);
+
+// Routes concernant le créatures du bestiaire :
+
+router.get("/creatures", creatureController.getAllCreaturesWithIllustrations);
+router.get(
+  "/creatures/:id",
+  creatureController.getCreatureByIdWithInformations
+);
 
 module.exports = router;

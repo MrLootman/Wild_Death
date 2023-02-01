@@ -1,0 +1,18 @@
+.bestiary-page {
+  margin-top: 60px;
+  text-align: center;
+
+  h1 {
+    font-size: 60px;
+    color: $primary-color;
+  }
+
+  ul {
+    background-color: transparent;
+    min-height: 300px;
+  }
+
+  img {
+    height: 200px;
+  }
+}

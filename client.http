@@ -1,5 +1,9 @@
-GET http://localhost:5000/users
+GET http://localhost:5000/author
 
 ###
 
-GET http://localhost:5000/users/2
+GET http://localhost:5000/author/1
+
+###
+
+GET http://localhost:5000/creatures/2

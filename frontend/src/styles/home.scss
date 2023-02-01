@@ -1,0 +1,28 @@
+.home {
+  span {
+    font-family: var(--main-font);
+    color: rgb(126, 4, 4);
+    opacity: 0.3;
+    font-size: 300px;
+    position: absolute;
+    top: 22vh;
+    right: 35vw;
+  }
+
+  h1 {
+    position: absolute;
+    top: 70vh;
+    right: 15vw;
+    font-size: 70px;
+  }
+
+  h3 {
+    position: absolute;
+    top: 95vh;
+    padding-inline: 50px;
+    right: 0;
+    left: 0;
+    font-size: 30px;
+    text-align: center;
+  }
+}

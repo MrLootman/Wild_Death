@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
-// import MoveBoat from "./pages/MoveBoat";
+import Bestiary from "./pages/Bestiary";
+import Creature from "./pages/Creature";
 
 import "./App.css";
 
@@ -15,6 +16,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/bestiary" element={<Bestiary />} />
+          <Route path="/creature/:id" element={<Creature />} />
         </Routes>
       </div>
     </>

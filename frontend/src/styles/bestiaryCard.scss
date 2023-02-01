@@ -1,0 +1,43 @@
+.bestiary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 60px;
+  margin-inline: 3vw;
+  cursor: pointer;
+
+  img {
+    object-fit: cover;
+    height: 300px;
+  }
+
+  h2 {
+    font-size: 100px;
+  }
+
+  h3 {
+    color: $secondary-color;
+
+    & span {
+      color: $primary-color;
+    }
+  }
+
+  ._name {
+    color: $primary-color;
+  }
+
+  ._illustrator {
+    color: $secondary-color;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .bestiary-card {
+    margin-top: 8vh;
+    img {
+      height: 500px;
+      object-fit: contain;
+    }
+  }
+}
