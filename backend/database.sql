@@ -38,12 +38,12 @@ INSERT INTO `bestiary`.`author` (name, biography, portrait) VALUES
 (
   "H. P. Lovecraft",
   "Howard Phillips Lovecraft, né le 20 août 1890 à Providence (Rhode Island) et mort le 15 mars 1937 dans la même ville, est un écrivain américain connu pour ses récits fantastiques, d'horreur et de science-fiction (Weird Fiction). Ses sources d'inspiration, tout comme ses créations, se réfèrent à la notion d'horreur cosmique, selon laquelle l'être humain est insignifiant à l'échelle du cosmos qui lui est profondément étranger. Ceux qui raisonnent véritablement, comme ses protagonistes, mettent toujours en péril leur santé mentale.",
-  "https://cdn.pixabay.com/photo/2016/03/31/19/44/howard-1295254_960_720.png"
+  "https://static.fnac-static.com/multimedia/Images/FD/Comete/123310/CCP_IMG_ORIGINAL/1606927.jpg"
 ),
 (
   "H. R. Gieger",
   "Hans Ruedi Giger, plus connu en tant que HR Giger, (né à Coire, en Suisse, le 5 février 1940, et mort le 12 mai 2014 à Zurich, en Suisse) est un plasticien, graphiste, illustrateur, sculpteur et designer suisse.",
-  "https://www.babelio.com/users/AVT_Hans-Ruedi-Giger_8665.jpg"
+  "https://www.fribourgregion.ch/wp-content/uploads/2021/11/gruyere-23212-bf5220db4d9e94539751227154895ff8cbd7981b_3000.jpg"
 );
 
 
@@ -52,7 +52,7 @@ INSERT INTO `bestiary`.`author` (name, biography, portrait) VALUES
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bestiary`.`book` (
   `id_book` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(155) NOT NULL,
+  `book_name` VARCHAR(155) NOT NULL,
   `genre` VARCHAR(90) NOT NULL,
   `fk_author_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id_book`),
@@ -64,7 +64,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-INSERT INTO `bestiary`.`book` (name, genre, fk_author_id) VALUES
+INSERT INTO `bestiary`.`book` (book_name, genre, fk_author_id) VALUES
 (
   "Le mythe de Cthulhu",
   "Fantastique - Horreur",
@@ -86,7 +86,7 @@ INSERT INTO `bestiary`.`book` (name, genre, fk_author_id) VALUES
 CREATE TABLE IF NOT EXISTS `bestiary`.`creature` (
   `id_creature` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
-  `description` VARCHAR(555) NOT NULL,
+  `description` VARCHAR(555) NULL DEFAULT NULL,
   PRIMARY KEY (`id_creature`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -104,6 +104,10 @@ INSERT INTO `bestiary`.`creature` (name, description) VALUES
 (
   "Nyarlathotep",
   "Nyarlathotep, surnommé « le Chaos Rampant », est à la fois le messager, le cœur et l'âme des Autres Dieux (Other Gods). Dans le poème en prose Nyarlathotep, il est représenté comme un homme au teint bistre affirmant être sorti des ombres antiques des pyramides égyptiennes. Nyarlathotep voyage de ville en ville afin de dispenser un savoir impie qui dépasse l'être humain et conduit des villes entières à la folie, symbolisant ainsi l'horreur cosmique."
+),
+(
+  "Alien",
+  "Les Aliens (de l'anglais « étranger », et par extension « extraterrestre ») sont également désignés par le terme Xénomorphe, qui signifie « forme étrangère », et désigne plus généralement une créature non répertoriée. Les deux noms sont génériques, le cas particulier du cycle de reproduction suggérant en fait la cohabitation symbiotique de plusieurs espèces aux noms spécifiques variables."
 );
 
 
@@ -168,6 +172,11 @@ INSERT INTO `bestiary`.`illustration` (illustrator, image, fk_illustration_creat
   "Loïc Muzy, Claire Delépée, Mariusz Gandzel",
   "https://www.bragelonne.fr/uploads/blog/2019/9-creatures-lovecraft/taille-reduite/nyarlathothep.jpg",
   3
+),
+(
+  "H.  R. Gieger",
+  "https://img.lemde.fr/2019/05/23/0/7/1046/523/1440/720/60/0/33a9048_2hAZCchers_gBj2CuFAbATi4.jpg",
+  4
 );
 
 SET SQL_MODE=@OLD_SQL_MODE;

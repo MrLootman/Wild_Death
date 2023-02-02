@@ -2,11 +2,23 @@
   span {
     font-family: var(--main-font);
     color: rgb(126, 4, 4);
-    opacity: 0.3;
+    opacity: 0.5;
     font-size: 300px;
     position: absolute;
     top: 22vh;
     right: 35vw;
+    animation: moveAndFade 2.1s ease-in-out 0.2s;
+
+    @keyframes moveAndFade {
+      from {
+        opacity: 0;
+        transform: translateX(150px);
+      }
+      to {
+        opacity: 0.5;
+        transform: translateX(0px);
+      }
+    }
   }
 
   h1 {
@@ -14,6 +26,18 @@
     top: 70vh;
     right: 15vw;
     font-size: 70px;
+    animation: moveAndFadeUp 1.5s ease-in-out;
+
+    @keyframes moveAndFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(120px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
   }
 
   h3 {

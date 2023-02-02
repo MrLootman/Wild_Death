@@ -30,10 +30,13 @@ function NavBar() {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <Link className="nav-item nav-link" to="/bestiary">
-            Bestiary
+            Bestiaire
           </Link>
-          <Link className="nav-item nav-link" to="/">
-            Authors
+          <Link className="nav-item nav-link" to="/author">
+            Auteurs
+          </Link>
+          <Link className="nav-item nav-link" to="/creation">
+            Création
           </Link>
         </div>
       </div>

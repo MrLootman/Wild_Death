@@ -34,6 +34,10 @@ const findAllWithGlobalInformations = (id) => {
   );
 };
 
+const addCreatureName = (creatureName) => {
+  return db.query(`INSERT INTO creature (name) VALUES (?);`, [creatureName]);
+};
+
 const deleteOne = (id) => {
   return db.query(`DELETE FROM ${table} WHERE id_creature = ?`, [id]);
 };
@@ -43,5 +47,6 @@ module.exports = {
   findOne,
   findAllWithIllustrations,
   findAllWithGlobalInformations,
+  addCreatureName,
   deleteOne,
 };

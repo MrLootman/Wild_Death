@@ -8,7 +8,7 @@ function BurgerMenu({ isClicked }) {
       <Link to="/bestiary">
         <p>Bestiaire</p>
       </Link>
-      <Link to="/authors">
+      <Link to="/author">
         <p>Auteurs</p>
       </Link>
       <Link to="/creation">

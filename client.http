@@ -6,4 +6,4 @@ GET http://localhost:5000/author/1
 
 ###
 
-GET http://localhost:5000/creatures/2
+GET http://localhost:5000/creatures/

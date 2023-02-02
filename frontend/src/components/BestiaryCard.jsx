@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function BestiaryCard({ name, image, illustrator, id }) {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <NavLink to={`/creature/${id}`}>
       <li className="bestiary-card">
         <img src={image} alt="Monster" />
-        <h2 className="_name">{name}</h2>
+        <h2 className="_name" data-aos="fade">
+          {name}
+        </h2>
         <h3 className="_illustrator">
           <span>Artiste(s):</span> {illustrator}
         </h3>

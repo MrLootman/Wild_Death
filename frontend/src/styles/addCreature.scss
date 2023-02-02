@@ -1,0 +1,19 @@
+.add_creature_form {
+  position: relative;
+  margin-top: 80px;
+
+  h1 {
+    margin-bottom: 62px;
+    text-align: center;
+  }
+
+  .form__group {
+    width: 80%;
+  }
+
+  button {
+    top: 60vh;
+    left: 10vw;
+    position: absolute;
+  }
+}

@@ -20,7 +20,7 @@ function Creature() {
 
   return (
     <ul className="creature-description">
-      {creatureId && console.warn(creatureId)}
+      {/* {creatureId && console.warn(creatureId)} */}
       {creatureId && (
         <>
           <li>
@@ -28,7 +28,12 @@ function Creature() {
           </li>
           <li>
             <h2>
-              <span>Original author :</span> {creatureId.name}
+              <span>Auteur :</span> {creatureId.name}
+            </h2>
+          </li>
+          <li>
+            <h2>
+              <span>Ouvrage :</span> {creatureId.book_name}
             </h2>
           </li>
           <li>
@@ -38,7 +43,7 @@ function Creature() {
           </li>
           <li>
             <h3>
-              <span>Illustratré par :</span> {creatureId.illustrator}
+              <span>Illustré par :</span> {creatureId.illustrator}
             </h3>
           </li>
           <button

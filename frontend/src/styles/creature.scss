@@ -1,32 +1,31 @@
 .creature-description {
-    min-height: 300px;
+  min-height: 300px;
+  width: 100%;
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  img {
+    width: 100vw;
+  }
+
+  h2 {
+    color: black;
     width: 100%;
-    margin-top: 55px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+    color: $primary-color;
+    padding-inline: 2vw;
+  }
 
+  h3 {
+    padding-inline: 5vw;
+  }
 
-    img {
-        width: 100vw;
-    }
+  span {
+    color: $secondary-color;
+  }
 
-    h2 {
-        color: black;
-        width: 100%;
-        color: $primary-color;
-        padding-inline: 2vw;
-    }
-
-    h3 {
-        padding-inline: 5vw;
-    }
-
-    span {
-        color: $secondary-color;
-    }
-
-    button {
-        margin-left: 2vw;
-    }
+  button {
+    margin-left: 2vw;
+  }
 }

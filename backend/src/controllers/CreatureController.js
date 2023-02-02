@@ -15,7 +15,6 @@ const getAllCreaturesWithIllustrations = (req, res) => {
   CreatureModel.findAllWithIllustrations()
     .then(([creatures]) => {
       res.status(200).send(creatures);
-      console.warn(creatures);
     })
     .catch((err) => {
       console.error(err);
@@ -34,6 +33,19 @@ const getCreatureById = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.sendStatus(500);
+    });
+};
+
+const postNewCreatureName = (req, res) => {
+  const { creatureName } = req.body;
+
+  CreatureModel.addCreatureName(creatureName)
+    .then(([result]) => {
+      res.status(201).send(result);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
     });
 };
 
@@ -56,4 +68,5 @@ module.exports = {
   getAllCreaturesWithIllustrations,
   getCreatureByIdWithInformations,
   getCreatureById,
+  postNewCreatureName,
 };

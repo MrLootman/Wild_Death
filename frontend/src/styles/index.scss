@@ -1,8 +1,11 @@
 // Import of every stylesheets :
 
-@import "./button.scss";
-@import "./globals.scss";
 @import "./variables.scss";
+@import "./inputs.scss";
+@import "./button.scss";
+@import "./author.scss";
+@import "./authorCard.scss";
+@import "./globals.scss";
 @import "./home.scss";
 @import "./backgroundImages.scss";
 @import "./burgerMenu.scss";
@@ -10,3 +13,4 @@
 @import "./bestiaryCard.scss";
 @import "./app.scss";
 @import "./creature.scss";
+@import "./addCreature.scss";
